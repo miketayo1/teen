@@ -204,7 +204,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="d-flex px-2 py-1">
+                                                <div class="d-flex px-2 py-1"> 
                                                     <div>
                                                         <img src="{{ asset('assets') }}/img/team-3.jpg"
                                                             class="avatar avatar-sm me-3 border-radius-lg" alt="user4">
