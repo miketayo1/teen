@@ -48,12 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('tables', function () {
 		return view('pages.tables');
 	})->name('tables');
-	Route::get('rtl', function () {
-		return view('pages.rtl');
-	})->name('rtl');
-	Route::get('virtual-reality', function () {
-		return view('pages.virtual-reality');
-	})->name('virtual-reality');
+	
 	Route::get('notifications', function () {
 		return view('pages.notifications');
 	})->name('notifications');
@@ -70,3 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');
 });
+Route::get('adduser', [ProfileController::class, 'addUser'])->middleware('auth')->name('adduser');
+Route::post('adduser', [ProfileController::class, 'postAddUser'])->middleware('auth')->name('postadduser');
+Route::get('user-management', [ProfileController::class, 'userManagement'])->middleware('auth')->name('user-management');;
+
