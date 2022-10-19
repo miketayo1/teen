@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 <!-- Navbar -->
-                <x-navbars.navs.guest signin='login' signup='register'></x-navbars.navs.guest>
+                
                 <!-- End Navbar -->
             </div>
         </div>
@@ -66,11 +66,7 @@
                                         <button type="submit"
                                             class="btn bg-gradient-primary w-100 my-4 mb-2">Send</button>
                                     </div>
-                                    <p class="mt-4 text-sm text-center">
-                                        Don't have an account?
-                                        <a href="{{ route('register') }}"
-                                            class="text-primary text-gradient font-weight-bold">Sign up</a>
-                                    </p>
+                                    
                                 </form>
                             </div>
                         </div>

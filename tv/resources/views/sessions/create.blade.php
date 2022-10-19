@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Navbar -->
-                    <x-navbars.navs.guest signin='login' signup='register'></x-navbars.navs.guest>
+                    
                     <!-- End Navbar -->
                 </div>
             </div>
@@ -22,24 +22,8 @@
                                         <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
                                         <div class="row mt-3">
                                             <h6 class='text-white text-center'>
-                                                <span class="font-weight-normal">Email:</span> admin@material.com
-                                                <br>
-                                                <span class="font-weight-normal">Password:</span> secret</h6>
-                                            <div class="col-2 text-center ms-auto">
-                                                <a class="btn btn-link px-3" href="javascript:;">
-                                                    <i class="fa fa-facebook text-white text-lg"></i>
-                                                </a>
-                                            </div>
-                                            <div class="col-2 text-center px-1">
-                                                <a class="btn btn-link px-3" href="javascript:;">
-                                                    <i class="fa fa-github text-white text-lg"></i>
-                                                </a>
-                                            </div>
-                                            <div class="col-2 text-center me-auto">
-                                                <a class="btn btn-link px-3" href="javascript:;">
-                                                    <i class="fa fa-google text-white text-lg"></i>
-                                                </a>
-                                            </div>
+                                               
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -78,11 +62,7 @@
                                             <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign
                                                 in</button>
                                         </div>
-                                        <p class="mt-4 text-sm text-center">
-                                            Don't have an account?
-                                            <a href="{{ route('register') }}"
-                                                class="text-primary text-gradient font-weight-bold">Sign up</a>
-                                        </p>
+                                        
                                         <p class="text-sm text-center">
                                             Forgot your password? Reset your password
                                             <a href="{{ route('verify') }}"

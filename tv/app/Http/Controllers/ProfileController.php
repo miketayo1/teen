@@ -31,26 +31,26 @@ class ProfileController extends Controller
         return view('pages.newuser');
     }
 
-    public function postAddUser(){
+    public function postAddUser(Request $req){
         
-        // if(request()->['password'] !== request()->['password_confirmation'])
-        // {
-        //     dd('ok');
-        // }
-        $attributes = request()->validate([
-            'email' => 'required|email|max:255|unique:users,email',
-            'name' => 'required',
-            'phone' => 'required|max:12',
-            'role' => 'required:max:150',
-            'password' => 'required|min:5|max:255',
-            
-            
-        ]);
+        if( strcmp( $req['password'], $req['password_confirmation']) == 0)
+        {
+            $attributes = request()->validate([
+                'email' => 'required|email|max:255|unique:users,email',
+                'name' => 'required',
+                'phone' => 'required|max:12',
+                'role' => 'required:max:150',
+                'password' => 'required|min:5|max:255',
+                
+                
+            ]);
+            $user = User::create($attributes);
+            return back()->withStatus('Profile successfully created.');
+        }
+        return back()->withDemo('Some fields are missing');
         
-        dd($attributes);
-        $user = User::create($attributes);
       
-        return back()->withStatus('Profile successfully created.');
+        
     
     }
 
@@ -61,6 +61,33 @@ class ProfileController extends Controller
         return view('pages.laravel-examples.user-management')->with('users',$users);
     }
 
+
+    public function deleteUser($id){
+
+        $user = User::where('id', $id)->delete();
+        return back()->withStatus('User Deleted successfully.');
+    }
+
+    public function editUser($id){
+        $user = User::where('id', $id)->first();
+
+        return view('pages.edit-user')->with('user',$user);
+    }
+    
+    public function postEditUser($id){
+    
+        $user = User::where('id', $id)->first();
+        $attributes = request()->validate([
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'name' => 'required',
+            'phone' => 'required|max:12',
+            'role' => 'required:max:150',
+            
+        ]);
+        
+         $user->update($attributes);
+        return back()->withStatus('Profile successfully updated.');
+    }
 
 
 }

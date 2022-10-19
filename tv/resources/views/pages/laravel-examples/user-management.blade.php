@@ -22,6 +22,17 @@
                         </div>
                         @endif
                         <div class="card-body px-0 pb-2">
+                        @if (session('status'))
+                        <div class="row">
+                            <div class="alert alert-success alert-dismissible text-white" role="alert">
+                                <span class="text-sm">{{ Session::get('status') }}</span>
+                                <button type="button" class="btn-close text-md py-3 opacity-10"
+                                    data-bs-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                        @endif
                             <div class="table-responsive p-0">
                                 <table class="table align-items-center mb-0">
                                     <thead>
@@ -77,17 +88,19 @@
                                             @if(Auth::user()->role == 'Admin')
                                             <td class="align-middle">
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="" data-original-title=""
+                                                    href="{{route('edit-user', ['id'=> $user->id])}} " data-original-title=""
                                                     title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                
-                                                <button type="button" class="btn btn-danger btn-link"
+                                                @if(Auth::user()->id != $user->id)
+                                                <a type="button" class="btn btn-danger btn-link" href="{{route('delete-user', ['id' => $user->id])
+                                                }}"
                                                 data-original-title="" title="">
                                                 <i class="material-icons">close</i>
                                                 <div class="ripple-container"></div>
-                                            </button>
+                                                </a>
+                                                @endif
                                             </td>
                                             @endif
                                         </tr>

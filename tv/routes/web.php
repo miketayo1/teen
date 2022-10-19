@@ -68,4 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('adduser', [ProfileController::class, 'addUser'])->middleware('auth')->name('adduser');
 Route::post('adduser', [ProfileController::class, 'postAddUser'])->middleware('auth')->name('postadduser');
 Route::get('user-management', [ProfileController::class, 'userManagement'])->middleware('auth')->name('user-management');;
-
+Route::get('/delete/{id}', [ProfileController::class, 'deleteUser'])->middleware('auth')->name('delete-user');
+Route::get('/edit-user/{id}', [ProfileController::class, 'editUser'])->middleware('auth')->name('edit-user');
+Route::post('/edituser/{id}', [ProfileController::class, 'postEditUser'])->middleware('auth')->name('edituser');
