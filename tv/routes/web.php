@@ -71,3 +71,6 @@ Route::get('user-management', [ProfileController::class, 'userManagement'])->mid
 Route::get('/delete/{id}', [ProfileController::class, 'deleteUser'])->middleware('auth')->name('delete-user');
 Route::get('/edit-user/{id}', [ProfileController::class, 'editUser'])->middleware('auth')->name('edit-user');
 Route::post('/edituser/{id}', [ProfileController::class, 'postEditUser'])->middleware('auth')->name('edituser');
+
+Route::get('configuration', [DashboardController::class, 'config'])->middleware('auth')->name('config');
+Route::post('slider', [DashboardController::class, 'postSlider'])->middleware('auth')->name('slider');
