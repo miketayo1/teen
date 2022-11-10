@@ -21,7 +21,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
-            
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EventController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -74,3 +75,23 @@ Route::post('/edituser/{id}', [ProfileController::class, 'postEditUser'])->middl
 
 Route::get('configuration', [DashboardController::class, 'config'])->middleware('auth')->name('config');
 Route::post('slider', [DashboardController::class, 'postSlider'])->middleware('auth')->name('slider');
+Route::get('/edit-slider/{id}', [DashboardController::class, 'editSlider'])->middleware('auth')->name('edit-slider');
+Route::post('/slider-update/{id}', [DashboardController::class, 'updateSlider'])->middleware('auth')->name('slider-update');
+Route::get('/delete-slider/{id}', [DashboardController::class, 'deleteSlider'])->middleware('auth')->name('delete-slider');
+Route::get('logos', [DashboardController::class, 'logo'])->middleware('auth')->name('get-logo');
+Route::post('/postlogo', [DashboardController::class, 'postLogo'])->middleware('auth')->name('post-logo');
+Route::post('contact', [DashboardController::class, 'contact'])->middleware('auth')->name('contact');
+
+Route::get('event', [EventController::class, 'getEvent'])->middleware('auth')->name('get-event');
+Route::get('add-event', [EventController::class, 'addEvent'])->middleware('auth')->name('add-event');
+
+Route::post('add-event', [EventController::class, 'postAddEvent'])->middleware('auth')->name('post-event');
+Route::get('delete-event/{id}', [EventController::class, 'deleteEvent'])->middleware('auth')->name('delete-event');
+
+Route::get('deleted-event', [EventController::class, 'deletedEvent'])->middleware('auth')->name('deleted-event');
+Route::get('restore-event/{id}', [EventController::class, 'restoreEvent'])->middleware('auth')->name('restore-event');
+
+Route::get('delet-event/{id}', [EventController::class, 'deletEvent'])->middleware('auth')->name('dele-event');
+
+Route::get('edit-event/{id}', [EventController::class, 'getEditEvent'])->middleware('auth')->name('get-edit-event');
+Route::post('post-edit-event/{id}', [EventController::class, 'postEditEvent'])->middleware('auth')->name('post-edit-event');

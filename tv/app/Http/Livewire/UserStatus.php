@@ -23,8 +23,6 @@ class UserStatus extends Component
 
     public function updating($field, $value)
     {
-        
-        
         $this->model->setAttribute($this->field, $value)->save();
 
     }

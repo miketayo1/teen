@@ -85,7 +85,7 @@
                                             <h6 class="mb-0">Payment Method</h6>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <a class="btn bg-gradient-dark mb-0" href="javascript:;"><i
+                                            <a class="btn bg-gradient-dark mb-0" href="#"><i
                                                     class="material-icons text-sm">add</i>&nbsp;&nbsp;Add New
                                                 Card</a>
                                         </div>

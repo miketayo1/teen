@@ -10,47 +10,28 @@
                 <span class="mask  bg-gradient-primary  opacity-6"></span>
             </div>
             <div class="card card-body mx-3 mx-md-4 mt-n6">
+            
                 <div class="row gx-4 mb-2">
                     
-                    <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
-                        <div class="nav-wrapper position-relative end-0">
-                            <ul class="nav nav-pills nav-fill p-1" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link mb-0 px-0 py-1 active " data-bs-toggle="tab" href="javascript:;"
-                                        role="tab" aria-selected="true">
-                                        <i class="material-icons text-lg position-relative">settings</i>
-                                        <span class="ms-1">Home Slider</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link mb-0 px-0 py-1 " data-bs-toggle="tab" href="javascript:;"
-                                        role="tab" aria-selected="false">
-                                        <i class="material-icons text-lg position-relative">settings</i>
-                                        <span class="ms-1">Logo</span>
-                                    </a>
-                                </li>
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link mb-0 px-0 py-1 " data-bs-toggle="tab" href="javascript:;"
-                                        role="tab" aria-selected="false">
-                                        <i class="material-icons text-lg position-relative">settings</i>
-                                        <span class="ms-1">Settings</span>
-                                    </a>
-                                </li> -->
-                            </ul>
+                    <div class="">
+                        <div class="">
+                        <div class="">
+                                            <a class="btn bg-gradient-dark mb-0" href="{{route('get-logo')}} "><i
+                                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Update Logo
+                                                </a><hr>
+                                                @if($logo == null)
+                                    <img src="{{ URL::to('/logo/teentv.jpg')}}" style='height: 104px; width: 140px;' >
+                                    @else
+                                    <img src="{{ URL::to('/logo')}}/{{$logo->path}}" style='height: 104px; width: 140px;' >
+                                    @endif
+                                </div>
+                                        
+                            
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="row">
-                        <div class="col-12 mt-4">
-                            <div class="card card-plain h-100">
-                                <div class="card-header pb-0 p-3">
-                                    <h6 class="mb-5">Upload Sliders</h6>
-                                </div>
-                                <div class="card card-plain h-100">
-                    
-                    <div class="card-body p-3">
-                        @if (session('status'))
+                <div class="row gx-4 mb-2">
+                @if (session('status'))
                         <div class="row">
                             <div class="alert alert-success alert-dismissible text-white" role="alert">
                                 <span class="text-sm">{{ Session::get('status') }}</span>
@@ -72,6 +53,62 @@
                                     </div>
                                 </div>
                         @endif
+                    
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                            <h5 class="mb-1">
+                                Contact Form  
+                            </h5>
+                            <form method='POST' action='{{route("contact") }}' enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                             
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Address:</label>
+                                    <input type="text" name="addr" placeholder="Address" class="form-control border border-2 p-2" >
+                                    @error('name')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+                                </div>
+                               
+                                <<div class="mb-3 col-md-6">
+                                    <label class="form-label">Phone:</label>
+                                    <input type="text" name="phone" placeholder="Phone" class="form-control border border-2 p-2" >
+                                    @error('name')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Email:</label>
+                                    <input type="text" name="email" placeholder="Email" class="form-control border border-2 p-2" >
+                                    @error('name')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+                                </div>
+                               
+                                
+                            </div>
+                            <button type="submit" class="btn bg-gradient-dark">Update</button>
+                        </form>
+                            
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+               
+                <div class="row">
+                    <div class="row">
+                        <div class="col-12 mt-4">
+                            <div class="card card-plain h-100">
+                                <div class="card-header pb-0 p-3">
+                                    <h6 class="mb-5">Upload Sliders</h6>
+                                </div>
+                                <div class="card card-plain h-100">
+                    
+                    <div class="card-body p-3">
+                       
                         <form method='POST' action='{{route("slider") }}' enctype="multipart/form-data">
                             @csrf
                             <div class="row">
@@ -141,8 +178,37 @@
                                                 {{$slider->description}}
                                             </p>
                                             <div class="d-flex align-items-center justify-content-between">
-                                                <button type="button" class="btn btn-outline-primary btn-sm mb-0">View
-                                                    Project</button>
+                                            <a href ="{{route('edit-slider', ['id'=> $slider->id])}} ">
+                                                <button type="button" class="btn btn-outline-primary btn-sm mb-0">
+                                                    Edit </button></a>
+                                            <a href ="{{route('delete-slider', ['id'=> $slider->id])}} " id="delete">
+                                                    <button type="button" onclick="deleteSlider('{{route('delete-slider', ['id'=> $slider->id])}}')" class="btn btn-outline-primary btn-sm mb-0">
+                                                    Delete</button>
+                                            </a>
+                                            <script>
+                                                $(document).ready(function() {
+                                                    
+                                                    $.ajaxSetup({
+                                                    headers: {
+                                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                    }
+                                                    });
+                                                });
+
+                                                function deleteSlider(url) {
+                                                    
+                                                    if(confirm('Are you sure?')) {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: url,
+                                                        success: function(result) {
+                                                        location.reload();
+                                                        }
+                                                    });
+                                                    }
+                                                }
+                                            </script>
+                                            
                                                 
                                             </div>
                                         </div>
