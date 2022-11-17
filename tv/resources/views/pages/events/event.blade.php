@@ -97,17 +97,14 @@
                                                 </td>
                                                 
                                                 <td class="align-middle">
-                                                    <a href="{{route('get-edit-event',['id'=>$event->id])}} "
-                                                        class="text-secondary font-weight-bold text-xs"
-                                                        data-toggle="tooltip" data-original-title="Edit user">
-                                                        Edit 
-                                                    </a>
-                                                    |
-                                                    <a href="{{ route('delete-event', ['id'=>$event->id]) }}"
-                                                        class="text-secondary font-weight-bold text-xs"
-                                                        data-toggle="tooltip" data-original-title="Edit user">
-                                                        Delete
-                                                    </a>
+                                                    
+                                                    <a class="btn btn-link text-dark px-3 mb-0" href="{{route('get-edit-event',['id'=>$event->id])}}"><i
+                                                class="material-icons text-sm me-2">edit</i>Edit</a>
+                                                    
+                                                   
+                                                    <a class="btn btn-link text-danger text-gradient px-3 mb-0"
+                                            href="{{ route('delete-event', ['id'=>$event->id]) }}"><i
+                                                class="material-icons text-sm me-2">delete</i>Delete</a>
                                                     
                                                 </td>
                                                 
@@ -118,7 +115,16 @@
                                         @endforeach
                                     </table>
                                     
-                                </div>
+                                </div><br>
+                                <div class="row d-flex justify-content-center">
+                                    <!--Grid column-->
+                                    <div class="col-md-6">
+                                        {{$events->links()}}
+                                    </div>
+                                    <!--Grid column-->
+                                </div>  
+                                
+                                
                             </div>
                         </div>
                     </div>

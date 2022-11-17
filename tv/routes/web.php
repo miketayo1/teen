@@ -23,6 +23,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\LogController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -95,3 +96,7 @@ Route::get('delet-event/{id}', [EventController::class, 'deletEvent'])->middlewa
 
 Route::get('edit-event/{id}', [EventController::class, 'getEditEvent'])->middleware('auth')->name('get-edit-event');
 Route::post('post-edit-event/{id}', [EventController::class, 'postEditEvent'])->middleware('auth')->name('post-edit-event');
+
+Route::get('media', [EventController::class, 'getMedia'])->middleware('auth')->name('get-media');
+
+Route::get('activity-log', [LogController::class, 'getLog'])->middleware('auth')->name('get-log');

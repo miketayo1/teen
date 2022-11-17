@@ -7,9 +7,11 @@ use App\Models\User;
 use App\Models\Slider;
 use App\Models\Logo;
 use App\Models\Contact;
+use App\Models\Log;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index()
@@ -76,6 +78,7 @@ class DashboardController extends Controller
     public function logo(){
 
         $logo = DB::table('logo')->latest()->first();
+        
        
         return view('pages.configuration.logo')->with('logo',$logo);
     }
@@ -101,6 +104,11 @@ class DashboardController extends Controller
             $data->email = $req->input('email');
           
             $data->save();
+            $log = new Log();
+            $log->user = Auth::user()->name;
+            $log->email = Auth::user()->email;
+            $log->activity = Auth::user()->name. " updated the contact information" ;
+            $log->save();
             return back()->withStatus('Contact updated successfully');
 
         }else{
@@ -108,6 +116,13 @@ class DashboardController extends Controller
             $data->phone = $req->input('phone');
             $data->email = $req->input('email');
             $data->update();
+
+            $data->save();
+            $log = new Log();
+            $log->user = Auth::user()->name;
+            $log->email = Auth::user()->email;
+            $log->activity = Auth::user()->name. " updated the contact information" ;
+            $log->save();
             return back()->withStatus('Contact updated successfully');
         }
  

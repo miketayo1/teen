@@ -7,7 +7,7 @@
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('dashboard') }} ">
-            <img src="{{ asset('assets') }}/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+            <img src="{{ URL::to('/logo/logo.png')}}" class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-2 font-weight-bold text-white">Teen Africa TV</span>
         </a>
     </div>
@@ -69,17 +69,17 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'configuration' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('tables') }}">
+                    href="{{ route('get-media') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
-                    <span class="nav-link-text ms-1">Videos/Images</span>
+                    <span class="nav-link-text ms-1">Media</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'configuration' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('tables') }}">
+                    href="#">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
@@ -88,25 +88,17 @@
             </li>
        
            
-            <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'notifications' ? ' active bg-gradient-primary' : '' }}  "
-                    href="{{ route('notifications') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">notifications</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Notifications</span>
-                </a>
-            </li>
+            
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Logs</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'profile' ? ' active bg-gradient-primary' : '' }}  "
-                    href="{{ route('profile') }}">
+                <a class="nav-link text-white {{ $activePage == 'configuration' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{route('get-log')}} ">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">person</i>
+                        <i class="material-icons opacity-10">table_view</i>
                     </div>
-                    <span class="nav-link-text ms-1">Profile</span>
+                    <span class="nav-link-text ms-1">Activity Log</span>
                 </a>
             </li>
           

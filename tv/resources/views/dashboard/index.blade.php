@@ -14,7 +14,7 @@
                                 <i class="material-icons opacity-10">weekend</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Today's Money</p>
+                                <p class="text-sm mb-0 text-capitalize">Events</p>
                                 <h4 class="mb-0">$53k</h4>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                 <i class="material-icons opacity-10">person</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
+                                <p class="text-sm mb-0 text-capitalize">Users</p>
                                 <h4 class="mb-0">2,300</h4>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                 <i class="material-icons opacity-10">person</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">New Clients</p>
+                                <p class="text-sm mb-0 text-capitalize">Images</p>
                                 <h4 class="mb-0">3,462</h4>
                             </div>
                         </div>
@@ -63,25 +63,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-header p-3 pt-2">
-                            <div
-                                class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">weekend</i>
-                            </div>
-                            <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Sales</p>
-                                <h4 class="mb-0">$103,430</h4>
-                            </div>
-                        </div>
-                        <hr class="dark horizontal my-0">
-                        <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than
-                                yesterday</p>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
             <div class="row mt-4">
                 <div class="col-lg-4 col-md-6 mt-4 mb-4">
@@ -152,7 +134,7 @@
                         <div class="card-header pb-0">
                             <div class="row">
                                 <div class="col-lg-6 col-7">
-                                    <h6>Projects</h6>
+                                    <h6>Shows</h6>
                                     <p class="text-sm mb-0">
                                         <i class="fa fa-check text-info" aria-hidden="true"></i>
                                         <span class="font-weight-bold ms-1">30 done</span> this month
@@ -485,7 +467,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card h-100">
                         <div class="card-header pb-0">
-                            <h6>Orders overview</h6>
+                            <h6>Now showing</h6>
                             <p class="text-sm">
                                 <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
                                 <span class="font-weight-bold">24%</span> this month

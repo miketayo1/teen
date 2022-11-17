@@ -64,10 +64,10 @@
                             <div class="row">
                              
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">Address:</label>
-                                    <input type="text" name="addr" placeholder="Address" class="form-control border border-2 p-2" >
+                                    <label class="form-label">Address: </label>
+                                    <input type="text" name="addr" placeholder="Address"  class="form-control border border-2 p-2" >
                                     @error('name')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                    <p class='text-danger inputerror'>{{ $message }} </p> 
                                     @enderror
                                 </div>
                                

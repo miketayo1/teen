@@ -61,7 +61,7 @@
                                 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Description</label>
-                                    <textarea class="form-control border border-2 p-2" name="description">  </textarea>
+                                    <textarea class="form-control border border-2 p-2" name="description" placeholder="Show synopsis"></textarea>
                                     
                                     @error('description')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
@@ -70,19 +70,50 @@
                                 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control border border-2 p-2" >
+                                    <input type="text" name="name" placeholder="show mame" class="form-control border border-2 p-2" >
                                     @error('name')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">Images</label>
+                                    <label class="form-label">Schedule</label>
+                                    <textarea class="form-control border border-2 p-2" name="schedule" placeholder="Schedule"></textarea>
+                                    
+                                    @error('schedule')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
+
+                                
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Images:</label>
                                     <input type="file" name="image[]" multiple="multiple" class="form-control border border-2 p-2" >
                                     @error('image')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                                 </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Video: </label>
+                                    <input type="text" name="video" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
+                                    @error('video')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Snippet 1:</label>
+                                    <input type="text" name="link1" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
+                
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Snippet 2:</label>
+                                        <input type="text" name="link2" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Snippet 3:</label>
+                                        <input type="text" name="link1" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
+                                </div>
+                                
                                
                                 
                                 

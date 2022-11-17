@@ -95,6 +95,10 @@ select:-webkit-autofill:focus {
   --bs-body-color: #7b809a;
   --bs-body-bg: #fff; }
 
+  .bg-gradient-primary {
+    background-image: linear-gradient(195deg, #028746 0%, #f11b27 100%) !important;
+}
+
 *,
 *::before,
 *::after {

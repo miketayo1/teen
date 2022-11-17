@@ -19,7 +19,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h4 class="mb-3">Add Event</h4>
+                                <h4 class="mb-3">Edit Event</h4>
                             </div>
                         </div>
                     </div>
@@ -77,6 +77,15 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
+                                    <label class="form-label">Schedule</label>
+                                    <textarea class="form-control border border-2 p-2" name="schedule" placeholder="Schedule">{{$event->schedule}}  </textarea>
+                                    
+                                    @error('schedule')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
                                     <label class="form-label">Images</label>
                                     <input type="file" name="image[]" multiple="multiple" class="form-control border border-2 p-2" >
                                     @error('image')
@@ -88,6 +97,56 @@
                                     @foreach($images as $image)
                                         <img src="{{ URL::to('/events')}}/{{$image->path}}" style='height: 104px; width: 140px;' >
                                     @endforeach
+                                    @endif
+                                </div>
+
+                                <div class="mb-3 col-md-10">
+                                    <label class="form-label">Video:</label>
+                                    <input type="text" name="video" value="{{$event->video}}" class="form-control border border-2 p-2" >
+                                    @error('image')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                @if($event->video == null)
+                                    
+                                    @else
+                                    <iframe width="360" height="215" src="{{$event->video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        
+                                    
+                                    @endif
+                                </div>
+
+                            
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label">Snippet 1:</label>
+                                    <input type="text" name="link1" value="{{$videos->link1}}" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
+                                    @if($videos == null)
+                                    
+                                    @else
+                                    <iframe width="300" height="215" src="{{$videos->link1}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        
+                                    
+                                    @endif
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label">Snippet 2:</label>
+                                        <input type="text" name="link2" value="{{$videos->link2}}"  placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
+                                        @if($videos == null)
+                                    
+                                    @else
+                                    <iframe width="300" height="215" src="{{$videos->link2}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        
+                                    
+                                    @endif
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label">Snippet 3:</label>
+                                        <input type="text" name="link3" value="{{$videos->link3}}" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
+                                        @if($videos == null)
+                                    
+                                    @else
+                                    <iframe width="300" height="215" src="{{$videos->link3}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        
+                                    
                                     @endif
                                 </div>
                                

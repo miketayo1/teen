@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Images;
+use App\Models\Videos;
+use App\Models\Log;
 use App\Models\EventTrash;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -25,7 +27,7 @@ class EventController extends Controller
         else{
             $trashs = 0;  
         }
-        $events = Event::OrderBy( 'created_at', 'desc')->get();
+        $events = Event::OrderBy( 'created_at', 'desc')->paginate(10);
         if (Event::exists()) {
             foreach($events as $event){
                 $user = User::where('email', $event->created_by)->first();
@@ -44,10 +46,13 @@ class EventController extends Controller
     }
 
     public function postAddEvent(Request $req){
+        
         $events= new Event();
         $events->name=$req->name;
         $events->description=$req->description;   
         $events->created_by= Auth::User()->email;
+        $events->video = $req->video;
+        $events->schedule=$req->schedule;
         $events->save();
 
         $images= $req->file('image');
@@ -62,7 +67,23 @@ class EventController extends Controller
             $event_pics->event_id = $new_pic->id;
             $event_pics->save();
         }
+       
+    
+            $new_vid = Event::latest()->first();
+            $videos = new Videos();
+            $videos->link1 = $req->link1;
+            $videos->link2 = $req->link2;
+            $videos->link3 = $req->link3;
+            $videos->event_id = $new_vid->id;
+            $videos->save();
 
+            $log = new Log();
+            $log->user = Auth::user()->name;
+            $log->email = Auth::user()->email;
+            $log->activity = Auth::user()->name. " created a new event";
+            $log->save();
+
+        
     return back()->withStatus('Event successfully Posted.');
     }
 
@@ -73,9 +94,17 @@ class EventController extends Controller
         $trash->name = $event->name;
         $trash->description = $event->description;
         $trash->created_by = $event->created_by;
+        $trash->video = $event->video;
+        $trash->schedule = $event->schedule;
         $trash->save();
 
         $event->delete();
+
+        $log = new Log();
+            $log->user = Auth::user()->name;
+            $log->email = Auth::user()->email;
+            $log->activity = Auth::user()->name. " deleted ". $event->name." event" ;
+            $log->save();
 
         
         return back()->withStatus('Event successfully deleted.');
@@ -125,9 +154,17 @@ class EventController extends Controller
         $event->name = $trash->name;
         $event->description = $trash->description;
         $event->created_by = $trash->created_by;
+        $event->video = $trash->video;
+        $event->schedule = $trash->schedule;
         $event->save();
 
         $trash->delete();
+
+            $log = new Log();
+            $log->user = Auth::user()->name;
+            $log->email = Auth::user()->email;
+            $log->activity = Auth::user()->name. " restored ". $event->name." event" ;
+            $log->save();
 
         return back()->withStatus('Event successfully restored.');
     }
@@ -135,6 +172,13 @@ class EventController extends Controller
     public function permanentDelete($id){
        
         $event = EventTrash::where('event_id', $id)->first();
+
+        $log = new Log();
+            $log->user = Auth::user()->name;
+            $log->email = Auth::user()->email;
+            $log->activity = Auth::user()->name. " permanently deleted ". $event->name." event" ;
+            $log->save();
+
         $event->delete();
         return back()->withStatus('Event Permanently Deleted');
     }
@@ -148,19 +192,42 @@ class EventController extends Controller
 
         $event = Event::where('id', $id)->first();
         $images = Images::where('event_id', $event->id)->get();
-        return view('pages.events.edit')->with('event',$event)->with('images',$images);
+        $videos = Videos::where('event_id', $event->id)->first();
+       
+        return view('pages.events.edit')->with('event',$event)->with('images',$images)->with('videos',$videos);
     }
 
     public function postEditEvent(Request $req, $id){
 
-        $events = Event::where('id', $id)->first();       
+        
+        
+        $events = Event::where('id', $id)->first();  
+        $videos = Videos::where('event_id', $id)->first();
+
         $images= $req->file('image');
         $events->name=$req->name;
         $events->description=$req->description;   
         $events->created_by= Auth::User()->email;
+        $events->video= $req->video;
+        $events->schedule = $req->schedule;
         $events->update();
 
+         $videos->link1=$req->link1;
+         $videos->link2=$req->link2;
+         $videos->link3=$req->link3;
+        $videos->event_id = $id;
+        $videos->update();
 
+        $log = new Log();
+            $log->user = Auth::user()->name;
+            $log->email = Auth::user()->email;
+            $log->activity = Auth::user()->name. " updated ". $events->name." event" ;
+            $log->save();
+
+        return back()->withStatus('Event successfully updated.');
+
+
+        // Edit images
         if (isset($images)) {
             $old_images = Images::where('event_id', $id)->get();
                 foreach($old_images as $old_image){
@@ -190,8 +257,20 @@ class EventController extends Controller
                 $event_pics->update();
             }
         }
+        $log = new Log();
+            $log->user = Auth::user()->name;
+            $log->email = Auth::user()->email;
+            $log->activity = Auth::user()->name. " updated ". $events->name." event" ;
+            $log->save();
 
         return back()->withStatus('Event updated successfully');
+    }
+
+    public function getMedia(){
+
+        $images = Images::OrderBy( 'created_at', 'desc')->paginate(20);
+        
+        return view('pages.media.media')->with('images', $images);
     }
 
 }
