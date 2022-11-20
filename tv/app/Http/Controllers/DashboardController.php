@@ -23,8 +23,9 @@ class DashboardController extends Controller
 
         $sliders = Slider::get();
         $logo = DB::table('logo')->latest()->first();
+        $contact = Contact::first();
         
-        return view('pages.configuration.configuration')->with('sliders', $sliders)->with('logo', $logo);
+        return view('pages.configuration.configuration')->with('sliders', $sliders)->with('logo', $logo)->with('contact', $contact);
     }
 
     public function postSlider(Request $req){

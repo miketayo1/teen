@@ -88,10 +88,12 @@
             </li>
        
            
-            
+            @if(Auth::User()->role == 'Admin')
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Logs</h6>
             </li>
+          
+            
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'configuration' ? ' active bg-gradient-primary' : '' }} "
                     href="{{route('get-log')}} ">
@@ -101,7 +103,7 @@
                     <span class="nav-link-text ms-1">Activity Log</span>
                 </a>
             </li>
-          
+            @endif
         </ul>
     </div>
    

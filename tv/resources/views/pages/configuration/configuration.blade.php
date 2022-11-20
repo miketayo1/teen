@@ -65,15 +65,15 @@
                              
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Address: </label>
-                                    <input type="text" name="addr" placeholder="Address"  class="form-control border border-2 p-2" >
+                                    <input type="text" name="addr" placeholder="Address" value= "{{$contact->address}}"  class="form-control border border-2 p-2" >
                                     @error('name')
                                     <p class='text-danger inputerror'>{{ $message }} </p> 
                                     @enderror
                                 </div>
                                
-                                <<div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-6">
                                     <label class="form-label">Phone:</label>
-                                    <input type="text" name="phone" placeholder="Phone" class="form-control border border-2 p-2" >
+                                    <input type="text" name="phone" placeholder="Phone" value= "{{$contact->phone}}" class="form-control border border-2 p-2" >
                                     @error('name')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
@@ -81,7 +81,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Email:</label>
-                                    <input type="text" name="email" placeholder="Email" class="form-control border border-2 p-2" >
+                                    <input type="text" name="email" placeholder="Email" value= "{{$contact->email}}" class="form-control border border-2 p-2" >
                                     @error('name')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
@@ -144,10 +144,7 @@
                         </form>
 
                     </div>
-                </div>
-                            </div>
-                        </div>
-                        
+                
                      
                         <div class="col-12 mt-4">
                             <div class="mb-5 ps-3">
@@ -156,7 +153,7 @@
                             </div>
                             
                             <div class="row">
-                            @foreach ($sliders as $slider)    
+                                @foreach ($sliders as $slider)    
                                 <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                                     <div class="card card-blog card-plain">
                                         <div class="card-header p-0 mt-n4 mx-3">
@@ -171,7 +168,11 @@
                                                     {{$slider->name}}
                                                     
                                                 </h5>
-                                                @livewire('user-status', ['model' => $slider, 'field' => 'active'], key($slider->id))
+                                                
+                                                <livewire:toggle-button
+                                                    :model="$slider"
+                                                    field="active"
+                                                    key="{{ $slider->id }}" />            
                                                
                                             <br>
                                             <p class="mb-4 text-sm">

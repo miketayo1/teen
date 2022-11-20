@@ -10,9 +10,9 @@ class UserStatus extends Component
    
     public Model $model;
     
-    public $field;
+    public string $field;
 
-    public $isActive;
+    public bool $isActive;
    
 
     public function mount()
@@ -23,12 +23,13 @@ class UserStatus extends Component
 
     public function updating($field, $value)
     {
+        
         $this->model->setAttribute($this->field, $value)->save();
-
     }
 
     public function render()
     {
         return view('livewire.user-status');
     }
+    
 }
