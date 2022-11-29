@@ -14,15 +14,18 @@ class ToggleButton extends Component
       public function mount()
       {
           $this->hasStock = (bool) $this->model->getAttribute($this->field);
+          
       }
 
       public function render()
       {
+        
           return view('livewire.toggle-button');
       }
 
       public function updating($field, $value)
       {
+        dd($this->hasStock);
           $this->model->setAttribute($this->field, $value)->save();
       }
 }

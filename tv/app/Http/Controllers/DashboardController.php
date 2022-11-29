@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Slider;
+use App\Models\Community;
 use App\Models\Logo;
 use App\Models\Contact;
+use App\Models\Event;
 use App\Models\Log;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -15,8 +17,10 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index()
-    {
-        return view('dashboard.index');
+    {   $users = User::all();
+        $community = Community::paginate(10);
+        $events = Event::paginate(10);
+        return view('dashboard.index')->with('events', $events)->with('users', $users)->with('community', $community);
     }
 
     public function config(){

@@ -24,6 +24,9 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\CommunityController;
+use App\Mail\WelcomMail;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -100,3 +103,8 @@ Route::post('post-edit-event/{id}', [EventController::class, 'postEditEvent'])->
 Route::get('media', [EventController::class, 'getMedia'])->middleware('auth')->name('get-media');
 
 Route::get('activity-log', [LogController::class, 'getLog'])->middleware('auth')->name('get-log');
+
+Route::get('/emails', function(){
+	// Mail::to("miketayo1@gmail.com")->send(new WelcomMail());
+	return new WelcomMail();
+});

@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'http://localhost/teen/tv/public',
+    'asset_url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'app_url' => 'http://localhost/teen/tv/public',
+    'app_url' => null,
 
     /*
     |--------------------------------------------------------------------------
