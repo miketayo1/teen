@@ -68,8 +68,12 @@
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                     Name</th>
                                                 <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Now Showing</th>
+                                                <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     Date</th>
+                                                    
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                     Options</th>
@@ -90,6 +94,14 @@
                                                 </td>
                                                 <td>
                                                     <p class="text-sm font-weight-bold mb-0">{{$event->name}}</p>
+                                                    
+                                                </td>
+                                                <td>
+                                                    @livewire('toggle-event',[
+                                                        'model'=>$event,
+                                                        'field'=>'active',
+                                                        
+                                                        ], key($event->id))  
                                                     
                                                 </td>
                                                 <td class="align-middle text-center text-sm">

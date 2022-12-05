@@ -163,17 +163,23 @@
                                             </a>
                                         </div>
                                         <div class="card-body p-3">
-                                            <p class="mb-0 text-sm">Active: {{$slider->active}}</p>
+                                                @livewire('count-toggle',[
+                                                    'model'=>$slider,
+                                                    'field'=>'active',
+                                                    
+                                                    ], key($slider->id))  
                                             <h5>
                                                     {{$slider->name}}
                                                     
-                                                </h5>
-                                                
-                                                <livewire:toggle-button
-                                                    :model="$slider"
-                                                    field="active"
-                                                    key="{{ $slider->id }}" />            
-                                               
+                                            </h5>
+                                             <div >   
+                                                @livewire('toggle-button',[
+                                                    'model'=>$slider,
+                                                    'field'=>'active',
+                                                    
+                                                    ], key($slider->id))          
+
+                                               </div>
                                             <br>
                                             <p class="mb-4 text-sm">
                                                 {{$slider->description}}

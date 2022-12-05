@@ -6,6 +6,7 @@ Thank you for registering to our community
 
 <x-mail::button :url="''">
 Visit Site 
+
 </x-mail::button>
 
 Thanks,<br>

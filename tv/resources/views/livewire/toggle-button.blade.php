@@ -1,4 +1,6 @@
 
-<div class="form-check form-switch">
-   <input class="form-check-input" type="checkbox" name="toggle" id="toggle"   wire:model="hasStock" role="switch" @if($hasStock) checked  @endif>
+<div class="form-check form-switch" >
+  
+  <input type="checkbox" class="form-check-input"  wire:model.lazy="hasStock"   role="switch" @if($hasStock) checked @endif>
 </div>
+

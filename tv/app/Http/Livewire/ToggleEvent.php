@@ -4,9 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Slider;
+use App\Models\Event;
 
-class ToggleButton extends Component
+class ToggleEvent extends Component
 {
     public Model $model;
       public string $field;
@@ -17,21 +17,15 @@ class ToggleButton extends Component
           $this->hasStock =(bool) $this->model->getAttribute($this->field);
           
       }
-    //   protected $listener = [
-    //         'refresh-me'=>'$refresh',
-    //   ];
+    public function render()
+    {
+        return view('livewire.toggle-event');
+    }
 
-      public function render()
-      {
-            
-          return view('livewire.toggle-button');
-      }
-
-      public function updating($field, $value)
+    public function updating($field, $value)
       {
         
           $this->model->setAttribute($this->field, $value)->save();
         //   $this->emitself('refresh-me');
       }
-     
 }

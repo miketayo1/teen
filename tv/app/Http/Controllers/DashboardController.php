@@ -17,9 +17,18 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index()
-    {   $users = User::all();
-        $community = Community::paginate(10);
-        $events = Event::paginate(10);
+    {   
+        if(!Auth::User()){
+            return redirect('sign-in');
+        }
+        
+        $users = User::all();
+        $community = Community::OrderBy( 'created_at', 'desc')->paginate(10);
+        $events= DB::table('event')
+        ->select('event.*')
+        ->where('event.active', '1')
+        ->distinct()
+        ->paginate(10);
         return view('dashboard.index')->with('events', $events)->with('users', $users)->with('community', $community);
     }
 
@@ -90,14 +99,25 @@ class DashboardController extends Controller
 
     public function postLogo(Request $req)
     {
-        $logo = new Logo();
+        $logo = Logo::first();
+        if(isset($logo) ){
             $avatar= $req->file('path');
 			$filename = time() . '.' . $avatar->getClientOriginalExtension();
 			Storage::disk('local')->makeDirectory('sliders/' );
 			Image::make($avatar)->resize(150,150)->save(public_path('logo/'. $filename));
             $logo->path = $filename;
-        $logo->save();
-        return back()->withStatus('Logo successfully uploaded.'); 
+            $logo->update();
+            return back()->withStatus('Logo successfully uploaded.'); 
+        }else{
+            $logo = new Logo();
+            $avatar= $req->file('path');
+			$filename = time() . '.' . $avatar->getClientOriginalExtension();
+			Storage::disk('local')->makeDirectory('sliders/' );
+			Image::make($avatar)->resize(150,150)->save(public_path('logo/'. $filename));
+            $logo->path = $filename;
+            $logo->save();
+            return back()->withStatus('Logo successfully uploaded.'); 
+        }
     }
 
     public function contact(Request $req){

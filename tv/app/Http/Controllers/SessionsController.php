@@ -6,6 +6,7 @@ Use Str;
 Use Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Password;
@@ -14,6 +15,9 @@ class SessionsController extends Controller
 {
     public function create()
     {
+        if(Auth::User()){
+            return redirect('dashboard');
+        }
         return view('sessions.create');
     }
 
