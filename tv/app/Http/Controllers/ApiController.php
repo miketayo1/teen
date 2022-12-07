@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Images;
 use App\Models\Videos;
 use App\Models\Contact;
+use App\Models\User;
 use App\Models\Logo;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class ApiController extends Controller
 {
     public function getEvent(){
+
        
         $events= DB::table('event')
         ->join('video', 'event.id', '=', 'video.event_id')// joining the contacts table , where user_id and contact_user_id are same
@@ -97,5 +99,17 @@ class ApiController extends Controller
         ->get();
 
         return $slider;
+    }
+
+    public function getEventName($id){
+        $events = DB::table('event')
+        ->join('images', 'event.id', '=', 'images.event_id')
+        ->select('event.id','event.name' , 'images.path')
+        ->where('images.event_id', '!=', $id)
+        ->distinct()
+        ->get()
+        ->unique('id');
+        return $events;
+        
     }
 }

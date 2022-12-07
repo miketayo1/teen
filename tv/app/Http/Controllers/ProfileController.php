@@ -46,6 +46,8 @@ class ProfileController extends Controller
                 
             ]);
             $user = User::create($attributes);
+            // $token = $user->createToken('mytoken')->plainTextToken;
+            // dd($token);
             return back()->withStatus('Profile successfully created.');
         }
         return back()->withDemo('Some fields are missing');

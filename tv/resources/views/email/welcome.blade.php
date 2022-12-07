@@ -4,7 +4,7 @@
 Thank you for registering to our community 
 <p>Expect great things</p>
 
-<x-mail::button :url="''">
+<x-mail::button :url="'https://teenafrica.tv/'">
 Visit Site 
 
 </x-mail::button>

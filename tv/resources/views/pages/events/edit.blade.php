@@ -102,15 +102,19 @@
 
                                 <div class="mb-3 col-md-10">
                                     <label class="form-label">Video:</label>
-                                    <input type="text" name="video" value="{{$event->video}}" class="form-control border border-2 p-2" >
+                                    
+                                    <input type="file" value = "{{$event->video}}" name="video" class="form-control">
                                     @error('image')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                                @if($event->video == null)
+                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+                                    @if($event->video == null)
                                     
                                     @else
-                                    <iframe width="360" height="215" src="{{$event->video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                        
+                                    
+                                    <video width="320" height="240" controls>
+                                        <source src="{{ URL::to('/videos')}}/{{$event->video}}" type="video/mp4" class="form-control border border-2 p-2" >
+                                      
+                                    </video>
                                     
                                     @endif
                                 </div>
@@ -150,10 +154,10 @@
                                     @endif
                                 </div>
                                
-                                
+                                <button type="submit" class="btn bg-gradient-dark">Update Event</button>
                                 
                             </div>
-                            <button type="submit" class="btn bg-gradient-dark">Edit Event</button>
+                            
                         </form>
 
                     </div>

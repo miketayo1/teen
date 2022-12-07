@@ -51,8 +51,23 @@ class EventController extends Controller
         $events->name=$req->name;
         $events->description=$req->description;   
         $events->created_by= Auth::User()->email;
-        $events->video = $req->video;
+        // $events->video = $req->video;
         $events->schedule=$req->schedule;
+
+        //Uploading Video
+        $req->validate([
+            'video' => 'required|mimes:mp4,ogx,oga,ogg,ogv,webm'
+        ]);
+        if(isset($req->video)){
+            
+            $file = $req->video;
+            $file->move('videos', $file->getClientOriginalName());
+            $file_name = $file->getClientOriginalName();
+            $events->video = $file_name;
+        }else{
+            return back()->withErrors('Select a video');
+        }
+
         $events->save();
 
         $images= $req->file('image');
@@ -63,6 +78,7 @@ class EventController extends Controller
             $filename = time().rand(1, 1000) . '.' . $image->getClientOriginalExtension();
             Storage::disk('local')->makeDirectory('events/' );
             Image::make($image)->resize(1300,800)->save(public_path('events/'. $filename));
+            
             $event_pics->path = $filename;
             $event_pics->event_id = $new_pic->id;
             $event_pics->save();
@@ -197,18 +213,31 @@ class EventController extends Controller
         return view('pages.events.edit')->with('event',$event)->with('images',$images)->with('videos',$videos);
     }
 
-    public function postEditEvent(Request $req, $id){
 
-        
-        
+        // Eddit Events and update them
+    public function postEditEvent(Request $req, $id){
+       
         $events = Event::where('id', $id)->first();  
         $videos = Videos::where('event_id', $id)->first();
-
+        // dd($req->video);
+         //Uploading Video
+        if(isset($req->video)){
+            
+            $file = $req->video;
+            $file->move('videos', $file->getClientOriginalName());
+            $file_name = $file->getClientOriginalName();
+            $events->video = $file_name;
+        }else{
+           
+            $events->video =$events->video;
+            
+        }
+        
         $images= $req->file('image');
         $events->name=$req->name;
         $events->description=$req->description;   
         $events->created_by= Auth::User()->email;
-        $events->video= $req->video;
+        // $events->video= $req->video;
         $events->schedule = $req->schedule;
         $events->update();
 

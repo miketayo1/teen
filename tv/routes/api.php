@@ -15,20 +15,32 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+// protected routes
+
+Route::middleware('auth:sanctum')->group(function (){
+    
+        Route::get('events', [ApiController::class, 'getEvent']); 
+        Route::get('now-showing', [ApiController::class, 'getNowShowing']);
+        Route::get('event-images', [ApiController::class,'getEventImages']);
+
+        //Thubmnail
+        Route::get('event-image', [ApiController::class,'getEventImag']);
+
+        //Event Image
+        Route::get('event-images/{id}', [ApiController::class,'getEventImage']);
+
+        //Other Shows
+        Route::get('event/{id}', [ApiController::class,'getEventName']);
+
+        Route::get('contact', [ApiController::class, 'getContact']);
+
+        Route::get('slider', [ApiController::class, 'getSliders']);
+
+        Route::get('logo', [ApiController::class, 'getLogo']);
+
 });
 
 Route::post('post-community', [CommunityController::class, 'postCommnity']); 
 
-Route::get('events', [ApiController::class, 'getEvent']); 
-Route::get('now-showing', [ApiController::class, 'getNowShowing']);
-Route::get('event-images', [ApiController::class,'getEventImages']);
-Route::get('event-image', [ApiController::class,'getEventImag']);
-Route::get('event-images/{id}', [ApiController::class,'getEventImage']);
 
-Route::get('contact', [ApiController::class, 'getContact']);
-
-Route::get('slider', [ApiController::class, 'getSliders']);
-
-Route::get('logo', [ApiController::class, 'getLogo']);

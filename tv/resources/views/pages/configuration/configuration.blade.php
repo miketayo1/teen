@@ -144,7 +144,10 @@
                         </form>
 
                     </div>
-                
+                </div>
+                            </div>
+                        </div>
+                        
                      
                         <div class="col-12 mt-4">
                             <div class="mb-5 ps-3">
@@ -153,7 +156,7 @@
                             </div>
                             
                             <div class="row">
-                                @foreach ($sliders as $slider)    
+                            @foreach ($sliders as $slider)    
                                 <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                                     <div class="card card-blog card-plain">
                                         <div class="card-header p-0 mt-n4 mx-3">
@@ -163,23 +166,13 @@
                                             </a>
                                         </div>
                                         <div class="card-body p-3">
-                                                @livewire('count-toggle',[
-                                                    'model'=>$slider,
-                                                    'field'=>'active',
-                                                    
-                                                    ], key($slider->id))  
+                                            <p class="mb-0 text-sm">Active: {{$slider->active}}</p>
                                             <h5>
                                                     {{$slider->name}}
                                                     
-                                            </h5>
-                                             <div >   
-                                                @livewire('toggle-button',[
-                                                    'model'=>$slider,
-                                                    'field'=>'active',
-                                                    
-                                                    ], key($slider->id))          
-
-                                               </div>
+                                                </h5>
+                                                @livewire('user-status', ['model' => $slider, 'field' => 'active'], key($slider->id))
+                                               
                                             <br>
                                             <p class="mb-4 text-sm">
                                                 {{$slider->description}}
