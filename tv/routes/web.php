@@ -27,6 +27,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\CommunityController;
 use App\Mail\WelcomMail;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\ApiController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -108,3 +109,6 @@ Route::get('/emails', function(){
 	// Mail::to("miketayo1@gmail.com")->send(new WelcomMail());
 	return new WelcomMail();
 });
+
+Route::get('user-token', [ApiController::class, 'getToken'])->middleware('auth')->name('get-token');
+Route::post('user-token', [ApiController::class, 'postToken'])->middleware('auth')->name('post-token');

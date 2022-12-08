@@ -41,6 +41,4 @@ Route::middleware('auth:sanctum')->group(function (){
 
 });
 
-Route::post('post-community', [CommunityController::class, 'postCommnity']); 
-
-
+Route::post('post-community', [CommunityController::class, 'postCommnity']);

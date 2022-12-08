@@ -9,6 +9,7 @@ use App\Models\Videos;
 use App\Models\Contact;
 use App\Models\User;
 use App\Models\Logo;
+use App\Models\Apimodel;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use Illuminate\Support\Facades\DB;
@@ -112,4 +113,35 @@ class ApiController extends Controller
         return $events;
         
     }
+
+    public  function getToken(){
+        $user=  Apimodel::where('email', Auth::User()->email )->first();
+        
+        return view('api.token')->with('user', $user);
+    }
+
+    public function postToken(Request $req){
+        $token = Auth::User()->createToken('mytoken')->plainTextToken;
+            $user_token =  Apimodel::where('email', Auth::User()->email )->first();
+            if(!isset($user_token)){
+                $user_token = new Apimodel();
+                $user_token->email = Auth::User()->email;
+                $user_token->token = $token;
+
+                $user_token->save();
+
+                return back()->withStatus('API generated');
+            }else
+            {
+                $user_token->email = Auth::User()->email;
+                $user_token->token = $token;
+                $user_token->update();
+
+                return back()->withStatus('API generated');
+                
+            }
+
+    }
+
+    
 }
