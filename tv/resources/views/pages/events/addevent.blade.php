@@ -112,11 +112,8 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Snippet 3:</label>
-                                        <input type="text" name="link1" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
+                                        <input type="text" name="link3" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"  class="form-control border border-2 p-2" >
                                 </div>
-                                
-                               
-                                
                                 
                             </div>
                             <button type="submit" class="btn bg-gradient-dark">Add Event</button>

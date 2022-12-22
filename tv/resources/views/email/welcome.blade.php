@@ -1,8 +1,11 @@
 <x-mail::message>
-# Welcome to Teen Africa TV Community
+# Welcome Gen-Z 
 
-Thank you for registering to our community 
-<p>Expect great things</p>
+Can we be more thrilled to welcome a gem!
+
+Take our sincerest welcome hugs!
+
+ We love you choose us , we have great value for your time ; and while you grab a pizza , enjoy our latest shows , music , hottest gist and more ....
 
 <x-mail::button :url="'https://teenafrica.tv/'">
 Visit Site 

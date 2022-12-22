@@ -56,7 +56,7 @@ class EventController extends Controller
 
         //Uploading Video
         $req->validate([
-            'video' => 'required|mimes:mp4,ogx,oga,ogg,ogv,webm'
+            'video' => 'mimes:mp4,ogx,oga,ogg,ogv,webm'
         ]);
         if(isset($req->video)){
             
@@ -65,7 +65,7 @@ class EventController extends Controller
             $file_name = $file->getClientOriginalName();
             $events->video = $file_name;
         }else{
-            return back()->withErrors('Select a video');
+            $events->video = null;
         }
 
         $events->save();

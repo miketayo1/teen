@@ -87,6 +87,7 @@
                                             </td>
                                             @if(Auth::user()->role == 'Admin')
                                             <td class="align-middle">
+                                                
                                                 <a rel="tooltip" class="btn btn-success btn-link"
                                                     href="{{route('edit-user', ['id'=> $user->id])}} " data-original-title=""
                                                     title="">

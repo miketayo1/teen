@@ -48,11 +48,36 @@
                         @endif
                         <form method='POST' action='{{route("edituser", ["id" => $user->id] ) }}'>
                             @csrf
+                            @if(Auth::user()->id != $user->id)
                             <div class="row">
                                 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Email address</label>
-                                    <input type="email" name="email" value ="{{$user->email}}" class="form-control border border-2 p-2">
+                                    <input type="email" name="email" value ="{{$user->email}}" class="form-control border border-2 p-2" readonly>
+                                  
+                                </div>
+                                
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" name="name" value ="{{$user->name}}" class="form-control border border-2 p-2" readonly>
+                                    @error('name')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
+                               
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Phone</label>
+                                    <input type="number" name="phone" value ="{{$user->phone}}" class="form-control border border-2 p-2" readonly>
+                                    @error('phone')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+                                </div>
+                                @else
+                                <div class="row">
+                                
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Email address</label>
+                                    <input type="email" name="email" value ="{{$user->email}}" class="form-control border border-2 p-2" >
                                   
                                 </div>
                                 
@@ -71,15 +96,38 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                 </div>
-                                
+                                @endif
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Role</label>
-                                    <select name="role" value ="{{$user->role}}" class="form-control border border-2 p-2">
-                                        <option> </option>
+                                    <!-- <select name="role" value ="{{$user->role}}" class="form-control border border-2 p-2">
+                                        <option>Select </option>
                                         <option >Admin</option>
                                         <option>Editor</option>
-                                    </select>
+                                    </select> -->
+                                    <div class="form-group">
+                                    <input type="checkbox"  name="role"  value="Admin"> <label for="demoCheckbox"> Admin</label>
+                                    <input type="checkbox"  name="role"  value="Editor"> <label for="demoCheckbox"> Editor</label>
                                     
+                                    </div>
+                                    
+                                    <script type="text/javascript">
+                                       
+                                        $("input:checkbox").on('click', function() {
+                                            // in the handler, 'this' refers to the box clicked on
+                                            var $box = $(this);
+                                            if ($box.is(":checked")) {
+                                                // the name of the box is retrieved using the .attr() method
+                                                // as it is assumed and expected to be immutable
+                                                var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                                                // the checked state of the group/box on the other hand will change
+                                                // and the current value is retrieved using .prop() method
+                                                $(group).prop("checked", false);
+                                                $box.prop("checked", true);
+                                            } else {
+                                                $box.prop("checked", false);
+                                            }
+                                            });
+                                    </script>
                                     
                                 </div>
                                 

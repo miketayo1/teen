@@ -28,13 +28,16 @@ use App\Http\Controllers\CommunityController;
 use App\Mail\WelcomMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\NewsController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
 Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest')->name('login');
+Route::get('home', [SessionsController::class, 'create'])->middleware('guest')->name('login');
 Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest');
+Route::post('home', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
 Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
 Route::get('verify', function () {
@@ -45,6 +48,7 @@ Route::get('/reset-password/{token}', function ($token) {
 })->middleware('guest')->name('password.reset');
 
 Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
+Route::get('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
@@ -112,3 +116,9 @@ Route::get('/emails', function(){
 
 Route::get('user-token', [ApiController::class, 'getToken'])->middleware('auth')->name('get-token');
 Route::post('user-token', [ApiController::class, 'postToken'])->middleware('auth')->name('post-token');
+
+Route::get('news', [NewsController::class, 'news'])->middleware('auth')->name('get-news');
+Route::get('add-news', [NewsController::class, 'createNews'])->middleware('auth')->name('create-news');
+Route::post('add-news', [NewsController::class, 'postNews'])->middleware('auth')->name('post-news');
+
+Route::get('delete-news/{id}', [NewsController::class, 'deleteNews'])->middleware('auth')->name('delete-news');

@@ -78,7 +78,7 @@ class ProfileController extends Controller
     }
     
     public function postEditUser($id){
-    
+   
         $user = User::where('id', $id)->first();
         $attributes = request()->validate([
             'email' => 'required|email|unique:users,email,'.$user->id,

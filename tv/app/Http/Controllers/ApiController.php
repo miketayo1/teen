@@ -13,6 +13,7 @@ use App\Models\Apimodel;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
@@ -30,15 +31,29 @@ class ApiController extends Controller
     }
 
     public function getNowShowing(){
-
+        
         $events= DB::table('event')
-        ->join('video', 'event.id', '=', 'video.event_id')// joining the contacts table , where user_id and contact_user_id are same
-        ->select('event.*', 'video.link1', 'video.link2','video.link3')
+        ->join('video', 'event.id', '=', 'video.event_id')
+        ->select('event.*', 'video.link1', 'video.link2','video.link3','event.name as  slug')
         ->where('event.active', '1')
         ->distinct()
         ->get();
 
-        return $events;
+        return $events->transform(function ($event, $key) {
+            return [
+                'id'=> $event->id,
+                'name'=>$event->name,
+                'description'=> $event->description,
+                'video' => $event->video,
+                'active'=> $event->active,
+                'schedule'=> $event->schedule,
+                'link1' => $event->link1,
+                'link2' => $event->link2,
+                'link3' => $event->link3,
+                'slug' => str_slug($event->name),
+                
+            ];
+        });
     }
 
     public function getEventImages(){
@@ -59,8 +74,17 @@ class ApiController extends Controller
         ->where('event.active', '1')
         ->distinct()
         ->get()
-        ->unique('id');
-        return $events;
+        ->unique('id')
+        ->values();
+        return $events->transform(function ($event, $key) {
+            return [
+                'id'=> $event->id,
+                'name'=>$event->name,
+                'path'=> $event->path,
+                'slug' => str_slug($event->name),
+                
+            ];
+        });
     }
 
     public function getEventImage($id){

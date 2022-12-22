@@ -18,7 +18,7 @@
                         <div class="">
                                             <a class="btn bg-gradient-dark mb-0" href="{{route('get-logo')}} "><i
                                                     class="material-icons text-sm">add</i>&nbsp;&nbsp;Update Logo
-                                                </a><hr>
+                                            </a><hr>
                                                 @if($logo == null)
                                     <img src="{{ URL::to('/logo/teentv.jpg')}}" style='height: 104px; width: 140px;' >
                                     @else
@@ -94,61 +94,53 @@
                             
                         </div>
                     </div>
-                   
-                </div>
-            </div>
-               
-                <div class="row">
                     <div class="row">
-                        <div class="col-12 mt-4">
-                            <div class="card card-plain h-100">
-                                <div class="card-header pb-0 p-3">
-                                    <h6 class="mb-5">Upload Sliders</h6>
-                                </div>
-                                <div class="card card-plain h-100">
-                    
-                    <div class="card-body p-3">
-                       
-                        <form method='POST' action='{{route("slider") }}' enctype="multipart/form-data">
-                            @csrf
                             <div class="row">
-                             
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" name="name" placeholder="Name" class="form-control border border-2 p-2" >
-                                    @error('name')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                    @enderror
-                                </div>
-                               
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Description</label>
-                                    <textarea name="description" placeholder="Description" class="form-control border border-2 p-2" ></textarea>
-        
-                                    @error('phone')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                    @enderror
-                                </div>
+                                <div class="col-12 mt-4">
+                                    <div class="card card-plain h-100">
+                                        <div class="card-header pb-0 p-3">
+                                            <h6 class="mb-5">Upload Sliders</h6>
+                                        </div>
+                                        <div class="card card-plain h-100">
+                            
+                            <div class="card-body p-3">
+                            
+                                <form method='POST' action='{{route("slider") }}' enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                    
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" name="name" placeholder="Name" class="form-control border border-2 p-2" >
+                                            @error('name')
+                                            <p class='text-danger inputerror'>{{ $message }} </p>
+                                            @enderror
+                                        </div>
+                                    
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Description</label>
+                                            <textarea name="description" placeholder="Description" class="form-control border border-2 p-2" ></textarea>
+                
+                                            @error('phone')
+                                            <p class='text-danger inputerror'>{{ $message }} </p>
+                                            @enderror
+                                        </div>
 
-                                <div class="mb-3 col-md-3">
-                                    <label class="form-label">File</label>
-                                    <input type="file" name="path"  class="form-control border border-2 p-2" >
-                                    @error('phone')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                    @enderror
-                                </div>
-                               
-                                
-                            </div>
-                            <button type="submit" class="btn bg-gradient-dark">Upload</button>
-                        </form>
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">File</label>
+                                            <input type="file" name="path"  class="form-control border border-2 p-2" >
+                                            @error('phone')
+                                            <p class='text-danger inputerror'>{{ $message }} </p>
+                                            @enderror
+                                        </div>
+                                    
+                                        
+                                    </div>
+                                    <button type="submit" class="btn bg-gradient-dark">Upload</button>
+                                </form>
 
-                    </div>
-                </div>
                             </div>
                         </div>
-                        
-                     
                         <div class="col-12 mt-4">
                             <div class="mb-5 ps-3">
                                 <h6 class="mb-1">Sliders</h6>
@@ -166,12 +158,12 @@
                                             </a>
                                         </div>
                                         <div class="card-body p-3">
-                                            <p class="mb-0 text-sm">Active: {{$slider->active}}</p>
+                                            <p class="mb-0 text-sm">@livewire('count-toggle', ['model' => $slider, 'field' => 'active'], key($slider->id))</p>
                                             <h5>
                                                     {{$slider->name}}
                                                     
                                                 </h5>
-                                                @livewire('user-status', ['model' => $slider, 'field' => 'active'], key($slider->id))
+                                                @livewire('toggle-button', ['model' => $slider, 'field' => 'active'], key($slider->id))
                                                
                                             <br>
                                             <p class="mb-4 text-sm">
@@ -218,6 +210,16 @@
                             </div>
                            
                         </div>
+                   
+                </div>
+                
+               
+                        
+                
+            </div>
+                        
+                     
+                        
                     </div>
                 </div>
             </div>
