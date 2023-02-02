@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test Email</title>
+    <title>Contact Form</title>
 </head>
 <body>
-    <h1>Test EMAIL</h1>
-    <p>Name: {{ $mailData['name'] }}</p>
-    <p>DOB: {{ $mailData['email'] }}</p>
+    <h3>This mail was sent from teenafrica.tv contact form </h3>
+    <p>From: <b> {{$email}} </b></p>
+    <p> name: {{$name}} </p>
+    <p> Phone: {{$phone}}</p>
+    <p> Message : {{$messag}} </p>
+
 </body>
 </html>

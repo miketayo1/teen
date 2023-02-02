@@ -87,7 +87,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Images</label>
-                                    <input type="file" name="image[]" multiple="multiple" class="form-control border border-2 p-2" >
+                                    <input type="file" name="image[]" accept="image/jpg, image/jpeg, image/png" multiple="multiple" class="form-control border border-2 p-2" >
                                     @error('image')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
@@ -103,7 +103,7 @@
                                 <div class="mb-3 col-md-10">
                                     <label class="form-label">Video:</label>
                                     
-                                    <input type="file" value = "{{$event->video}}" name="video" class="form-control">
+                                    <input type="file" value = "{{$event->video}}" accept="video/mp4, video/mov, video/avi, video/flv, video/wmv " name="video" class="form-control">
                                     @error('image')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror

@@ -15,6 +15,7 @@ use Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Mail;
 
 class ApiController extends Controller
 {
@@ -61,6 +62,7 @@ class ApiController extends Controller
         $events = DB::table('event')
         ->join('images', 'event.id', '=', 'images.event_id')
         ->select('event.id','event.name' , 'images.path')
+        ->where('event.active', '1')
         ->distinct()
         ->get();
 
@@ -165,6 +167,30 @@ class ApiController extends Controller
                 
             }
 
+    }
+
+    public function postContact(Request $req){
+
+        $contact = new Contact();
+
+        $contact->email= $req->input('email');
+        $contact->name = $req->input('name');
+        $contact->phone = $req->input('phone');
+        $contact->message = $req->input('message');
+
+        Mail::send('email.name', array(
+            'name' => $contact['name'],
+            'email' => $contact['email'],
+            'phone' => $contact['phone'],
+            'subject' => $contact['subject'],
+            'messag' => $contact['message'],
+        ), function($message) use ($req){
+            $message->from($req->email);
+            $message->to('tatvweb@gmail.com', 'Admin')->subject($req->get('subject'));
+        });
+
+        return response()->json([
+            'success' => 'Thank you for contacting us!!!' ]);
     }
 
     

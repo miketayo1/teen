@@ -128,7 +128,7 @@
 
                                         <div class="mb-3 col-md-3">
                                             <label class="form-label">File</label>
-                                            <input type="file" name="path"  class="form-control border border-2 p-2" >
+                                            <input type="file" name="path" accept="image/jpg, image/jpeg, image/png"   class="form-control border border-2 p-2" >
                                             @error('phone')
                                             <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror

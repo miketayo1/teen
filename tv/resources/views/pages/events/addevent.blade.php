@@ -88,14 +88,14 @@
                                 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Images:</label>
-                                    <input type="file" name="image[]" multiple="multiple" class="form-control border border-2 p-2" >
+                                    <input type="file" accept="image/jpg, image/jpeg, image/png" name="image[]" multiple="multiple" class="form-control border border-2 p-2" >
                                     @error('image')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Video: </label>
-                                    <input type="file" name="video" class="form-control border border-2 p-2"/>
+                                    <input type="file" accept="video/mp4, video/mov, video/avi, video/flv, video/wmv " name="video" class="form-control border border-2 p-2"/>
                                     <!-- <input type="text" name="video" placeholder="YouTube embeded Link e.g https://www.youtube.com/embed/ULmX7fsvj5S10"   > -->
                                     @error('video')
                                 <p class='text-danger inputerror'>{{ $message }} </p>

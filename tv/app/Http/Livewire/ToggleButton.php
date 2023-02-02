@@ -17,9 +17,7 @@ class ToggleButton extends Component
           $this->hasStock =(bool) $this->model->getAttribute($this->field);
           
       }
-    //   protected $listener = [
-    //         'refresh-me'=>'$refresh',
-    //   ];
+    
 
       public function render()
       {

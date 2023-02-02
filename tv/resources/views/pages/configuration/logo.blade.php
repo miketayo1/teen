@@ -49,7 +49,7 @@
                                 
                                 <div class="mb-3 col-md-3">
                                     <label class="form-label">File</label>
-                                    <input type="file" name="path" value=""  class="form-control border border-2 p-2" >
+                                    <input type="file" name="path" accept="image/jpg, image/jpeg, image/png" value=""  class="form-control border border-2 p-2" >
                                     @if($logo == null)
                                     <img src="{{ URL::to('/logo/teentv.jpg')}}" style='height: 104px; width: 140px;' >
                                     @else
